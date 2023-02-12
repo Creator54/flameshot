@@ -279,8 +279,9 @@ Flameshot::Origin Flameshot::origin()
 bool Flameshot::resolveAnyConfigErrors()
 {
     bool resolved = true;
-    ConfigHandler config;
-    if (!config.checkUnrecognizedSettings() || !config.checkSemantics()) {
+    ConfigHandler confighandler;
+    if (!confighandler.checkUnrecognizedSettings() ||
+        !confighandler.checkSemantics()) {
         auto* resolver = new ConfigResolver();
         QObject::connect(
           resolver, &ConfigResolver::rejected, [resolver, &resolved]() {
@@ -333,7 +334,7 @@ void Flameshot::requestCapture(const CaptureRequest& request)
     }
 }
 
-void Flameshot::exportCapture(QPixmap capture,
+void Flameshot::exportCapture(const QPixmap& capture,
                               QRect& selection,
                               const CaptureRequest& req)
 {
@@ -395,15 +396,11 @@ void Flameshot::exportCapture(QPixmap capture,
         CR::ExportTask tasks = tasks;
         QObject::connect(
           widget, &ImgUploaderBase::uploadOk, [=](const QUrl& url) {
-              if (ConfigHandler().copyAndCloseAfterUpload()) {
+              if (ConfigHandler().copyURLAfterUpload()) {
                   if (!(tasks & CR::COPY)) {
                       FlameshotDaemon::copyToClipboard(
                         url.toString(), tr("URL copied to clipboard."));
-                      widget->close();
-                  } else {
-                      widget->showPostUploadDialog();
                   }
-              } else {
                   widget->showPostUploadDialog();
               }
           });

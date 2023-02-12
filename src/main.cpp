@@ -221,7 +221,7 @@ int main(int argc, char* argv[])
                                  QObject::tr("Print raw PNG capture"));
     CommandOption selectionOption(
       { "g", "print-geometry" },
-      QObject::tr("Print geometry of the selection in the format W H X Y. Does "
+      QObject::tr("Print geometry of the selection in the format WxH+X+Y. Does "
                   "nothing if raw is specified"));
     CommandOption screenNumberOption(
       { "n", "number" },
@@ -475,10 +475,10 @@ int main(int argc, char* argv[])
         CaptureRequest req(CaptureRequest::SCREEN_MODE, delay, screenNumber);
         if (!region.isEmpty()) {
             if (region.startsWith("screen")) {
-                // TODO use abstract logger
-                QTextStream(stderr) << "The 'screen' command does not support "
-                                       "'--region screen<N>'.\n"
-                                       "See flameshot --help.\n";
+                AbstractLogger::error()
+                  << "The 'screen' command does not support "
+                     "'--region screen<N>'.\n"
+                     "See flameshot --help.\n";
                 exit(1);
             }
             req.setInitialSelection(Region().value(region).toRect());

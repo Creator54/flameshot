@@ -11,13 +11,13 @@
   </p>
   <p>
     <a href="https://github.com/flameshot-org/flameshot/actions?query=workflow%3APackaging%28Linux%29">
-      <img src="https://img.shields.io/github/workflow/status/flameshot-org/flameshot/Packaging(Linux)?label=gnu%2Flinux" alt="GNU/Linux Build Status" />
+      <img src="https://img.shields.io/github/actions/workflow/status/flameshot-org/flameshot/Linux-pack.yml?branch=master&label=gnu%2Flinux" alt="GNU/Linux Build Status" />
     </a>
     <a href="https://github.com/flameshot-org/flameshot/actions?query=workflow%3APackaging%28Windows%29">
-      <img src="https://img.shields.io/github/workflow/status/flameshot-org/flameshot/Packaging(Windows)?label=windows" alt="Windows Build Status" />
+      <img src="https://img.shields.io/github/actions/workflow/status/flameshot-org/flameshot/Windows-pack.yml?branch=master&label=windows" alt="Windows Build Status" />
     </a>
     <a href="https://github.com/flameshot-org/flameshot/actions?query=workflow%3APackaging%28MacOS%29">
-      <img src="https://img.shields.io/github/workflow/status/flameshot-org/flameshot/Packaging(MacOS)?label=macos" alt="MacOS Build Status" />
+      <img src="https://img.shields.io/github/actions/workflow/status/flameshot-org/flameshot/MacOS-pack.yml?branch=master&label=macos" alt="MacOS Build Status" />
     </a>
     <a href="https://flameshot.org/docs/installation/development-build/">
       <img src="https://img.shields.io/badge/nightly%20builds-available-%23AA00FF" alt="Nightly Build" />
@@ -63,7 +63,7 @@
   - [Local](#local)
   - [Global](#global)
     - [On KDE Plasma desktop](#on-kde-plasma-desktop)
-    - [On Ubuntu](#on-ubuntu-tested-on-1804-2004)
+    - [On Ubuntu](#on-ubuntu-tested-on-1804-2004-2204)
     - [On XFCE 4](#on-xfce-4)
 - [Considerations](#considerations)
 - [Installation](#installation)
@@ -98,7 +98,7 @@
 ## Usage
 
 Executing the command `flameshot` without parameters will launch a running
-instance of the program in background without taking actions.
+instance of the program in the background without taking actions.
 If your desktop environment provides tray area, a tray icon will also
 appear in the tray for users to perform configuration and management.
 
@@ -177,8 +177,8 @@ You can use the graphical menu to configure Flameshot, but alternatively you can
 ### Config file
 
 You can also edit some of the settings (like overriding the default colors) in the configuration file.\
-Linux path : `~/.config/flameshot/flameshot.ini`.\
-Windows path : `C:\Users\{YOURNAME}\AppData\Roaming\flameshot\flameshot.ini`.
+Linux path: `~/.config/flameshot/flameshot.ini`.\
+Windows path: `C:\Users\{YOURNAME}\AppData\Roaming\flameshot\flameshot.ini`.
 
 When copying over the config file from Linux to Windows or vice versa,
 make sure to correct the `savePath` variable,\
@@ -200,9 +200,10 @@ These shortcuts are available in GUI mode:
 | <kbd>C</kbd>                                          | Set the Circle as paint tool |
 | <kbd>M</kbd>                                          | Set the Marker as paint tool |
 | <kbd>T</kbd>                                          | Add text to your capture |
-| <kbd>B</kbd>                                          | Set Pixalate as the paint tool |
+| <kbd>B</kbd>                                          | Set Pixelate as the paint tool |
 | <kbd>←</kbd>, <kbd>↓</kbd>, <kbd>↑</kbd>, <kbd>→</kbd>                    | Move selection 1px                                             |
 | <kbd>Shift</kbd> + <kbd>←</kbd>, <kbd>↓</kbd>, <kbd>↑</kbd>, <kbd>→</kbd> | Resize selection 1px                                           |
+| <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>←</kbd>, <kbd>↓</kbd>, <kbd>↑</kbd>, <kbd>→</kbd> | Symmetrically resize selection 2px                                           |
 | <kbd>Esc</kbd>                                                            | Quit capture                                                   |
 | <kbd>Ctrl</kbd> + <kbd>M</kbd>                                            | Move the selection area                                              |
 | <kbd>Ctrl</kbd> + <kbd>C</kbd>                                            | Copy to clipboard                                              |
@@ -227,7 +228,7 @@ These shortcuts are available in GUI mode:
 
 Flameshot uses <kbd>Print screen</kbd> (Windows) and <kbd>cmd</kbd>-<kbd>shift</kbd>-<kbd>x</kbd> (macOS) as default global hotkeys.
 
-On Linux, Flameshot doesn't yet support <kbd>Pr Scr</kbd> out of the box, but with a bit of configuration you can set this up:
+On Linux, Flameshot doesn't yet support <kbd>Prt Sc</kbd> out of the box, but with a bit of configuration you can set this up:
 
 #### On KDE Plasma desktop
 
